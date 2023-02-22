@@ -20,10 +20,10 @@ function read(req, res) {
 		if (!isNaN(req.query.page) && Number(req.query.page) > 1)
 			skip = (Number(req.query.page) - 1) * conf.limits.songs;
 		if (req.query.title)
-			query.title = req.query.title;
+			query.title = new RegExp(req.query.title, "i");
 		if (req.query.sort)
 			sort = { [req.query.sort]: 1 };
-		if (req.query.dir == "dsc")
+		if (req.query.dir == "desc")
 			for (let i in sort)
 				sort[i] = -1;
 		let cursor = conf.collections.songs.find(query);

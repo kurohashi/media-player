@@ -78,7 +78,12 @@ function failure(res, data, msg) {
 };
 
 function genResponse(res, msg, data, statusCode, obj) {
-	const headers = {};
+	const headers = {
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Credentials': true,
+		'Access-Control-Allow-Methods': "POST, GET, OPTIONS, DELETE, PUT",
+		'Access-Control-Allow-Headers': "Content-Type,append,delete,entries,foreach,get,has,keys,set,values,Authorization,auth"
+	};
 	if (isNaN(parseInt(data)))
 		data = data || {};
 	if (!(res && msg && statusCode)) {
